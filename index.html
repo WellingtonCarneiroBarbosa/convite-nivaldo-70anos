@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -6,7 +9,7 @@
     <title>Aniversário Nivaldo Barbosa: 70 ANOS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <style>
+   <style>
         * {
             box-sizing: border-box;
         }
@@ -218,22 +221,29 @@
 
                     const data = await res.json();
 
-                    if (data.success) {
+                    if (data.adicionados) {
                         await Swal.fire({
                             icon: 'success',
                             title: 'Presença confirmada!',
-                            html: `Nome(s) registrado(s):<br><strong>${nome.replace(/\n/g, '<br>')}</strong>`
+                            html: `Nome(s) registrado(s):<br><strong>${data.adicionados}</strong><br><br>Lista atualizada:`
                         });
+
+                        // Atualiza a lista de nomes confirmados
+                        listaConfirmados.innerHTML = '';
+                        data.confirmados.forEach(item => {
+                            const li = document.createElement('li');
+                            li.textContent = item;
+                            listaConfirmados.appendChild(li);
+                        });
+
                         campoNome.value = '';
-                        carregarNomes();
                     } else {
                         Swal.fire({
                             icon: 'info',
                             title: 'Nome já confirmado',
-                            text: data.message || 'Esse nome já está na lista.'
+                            text: 'Esse nome já está na lista.'
                         });
                     }
-
                 } catch (err) {
                     console.error('Erro ao confirmar presença:', err);
                     Swal.fire('Erro', 'Não foi possível enviar sua confirmação. Tente novamente.', 'error');
