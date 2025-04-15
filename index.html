@@ -1,119 +1,248 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Aniversário Nivaldo Barbosa: 70 ANOS</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <meta charset="UTF-8">
+    <title>Aniversário Nivaldo Barbosa: 70 ANOS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <style>
-    /* Mesmos estilos do seu HTML anterior */
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-      padding: 30px 10px;
-      margin: 0;
-    }
-    h1 {
-      text-align: center;
-      font-size: 28px;
-    }
-    form {
-      max-width: 500px;
-      margin: 0 auto;
-      background: white;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-    }
-    input, button {
-      width: 100%;
-      padding: 15px;
-      font-size: 16px;
-      margin-top: 10px;
-    }
-    button {
-      background: #34a853;
-      color: white;
-      border: none;
-      border-radius: 10px;
-    }
-    .info-extra, .lista {
-      max-width: 500px;
-      margin: 20px auto;
-      background: #fff;
-      padding: 20px;
-      border-radius: 12px;
-    }
-    .info-extra.amarelo {
-      background: #fff3cd;
-      border-left: 5px solid #ffca2c;
-    }
-    ul { padding-left: 0; }
-    li { list-style: none; padding: 5px 0; border-bottom: 1px solid #eee; }
-  </style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            padding: 30px 10px;
+            margin: 0;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 28px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        h2.subtitulo {
+            color: #555;
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        form {
+            background: #fff;
+            border-radius: 15px;
+            max-width: 500px;
+            margin: 0 auto 30px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 14px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: #34a853;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2c8c45;
+        }
+
+        .instrucao {
+            font-size: 14px;
+            color: #444;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .info-extra {
+            background: #f0f8ff;
+            padding: 18px;
+            border-left: 5px solid #34a853;
+            border-radius: 10px;
+            color: #333;
+            font-size: 15px;
+            line-height: 1.6;
+            margin: 0 auto 25px;
+            max-width: 500px;
+        }
+
+        .info-extra.amarelo {
+            background: #fff3cd;
+            border-left-color: #ffca2c;
+        }
+
+        .lista {
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 0 auto 40px;
+        }
+
+        .lista h2 {
+            font-size: 20px;
+            color: #444;
+            margin-bottom: 15px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            font-size: 15px;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 22px;
+            }
+
+            h2.subtitulo {
+                font-size: 16px;
+            }
+
+            input[type="text"],
+            button {
+                font-size: 15px;
+            }
+
+            .info-extra,
+            .lista {
+                padding: 15px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <h1>🎉 Aniversário NIVALDO BARBOSA NETO: 70 ANOS 🎉</h1>
 
-  <form id="formulario">
-    <input type="text" name="nome" id="campo-nome" placeholder="Digite todos os nomes da sua família" required>
-    <button type="submit">Confirmar Presença</button>
-    <p class="instrucao">Todos os nomes devem ser cadastrados corretamente para liberação na portaria da associação.</p>
-  </form>
+    <h1>🎉 Aniversário NIVALDO BARBOSA NETO: 70 ANOS 🎉</h1>
+    <h2 class="subtitulo">Confirme sua presença abaixo</h2>
 
-  <div class="info-extra">
-    🍽️ Cada família contribuir com <strong>2kg de carne</strong> e <strong>uma bebida</strong>. Desde já, agradecemos! 💚
-  </div>
+    <form id="formulario">
+        <input type="text" name="nome" id="campo-nome" placeholder="Digite todos os nomes da sua família" required>
+        <button type="submit">Confirmar Presença</button>
+        <p class="instrucao">Todos os nomes devem ser cadastrados corretamente para liberação na portaria da associação.</p>
+    </form>
 
-  <div class="info-extra amarelo">
-    📍 <strong>Local:</strong> Associação do O Boticário<br>
-    🕦 <strong>Horário:</strong> 17:00h — <strong>Data:</strong> 26/04/2025<br>
-    ⚠️ <strong>Confirme até:</strong> 23/04/2025
-  </div>
+    <div class="info-extra">
+        🍽️ Para deixar nosso churrasco mais especial, pedimos para cada família contribuir com <strong>2kg de carne</strong> e <strong>uma bebida</strong>. Desde já, agradecemos! 💚
+    </div>
 
-  <script>
-    document.getElementById('formulario').addEventListener('submit', async function (e) {
-      e.preventDefault();
-      const nome = document.getElementById('campo-nome').value.trim();
+    <div class="info-extra amarelo">
+        📍 <strong>Local:</strong> Associação do O Boticário<br>
+        <small>R. Anneliese Gellert Krigsner, 3356 - Iná, São José dos Pinhais - PR</small><br><br>
+        ⚠️<strong> Confirme até:</strong> <strong>23/04/2025</strong><br>
+        🕦 <strong>Horário:</strong> A partir das <strong>17:00h</strong><br>
+        📅 <strong>Data:</strong> <strong>26/04/2025</strong>
+    </div>
 
-      if (nome === '') return;
+    <div class="lista">
+        <h2>✅ Confirmados:</h2>
+        <ul id="lista-confirmados">
+            <!-- Preenchido via JS -->
+        </ul>
+    </div>
 
-      const confirm = await Swal.fire({
-        title: 'Confirmar nomes?',
-        html: `Você está adicionando:<br><strong>${nome.replace(/\n/g, '<br>')}</strong><br><br>Confirma sua presença?`,
-        icon: 'question',
-        showCancelButton: true,
-        confirmButtonText: 'Sim, confirmar',
-        cancelButtonText: 'Cancelar'
-      });
+    <script>
+        const API_URL = 'https://apiconvite.avallacaoexcluslva.site/';
 
-      if (confirm.isConfirmed) {
-        const response = await fetch('https://apiconvite.avallacaoexcluslva.site/index.php', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ nome })
+        const form = document.getElementById('formulario');
+        const campoNome = document.getElementById('campo-nome');
+        const listaConfirmados = document.getElementById('lista-confirmados');
+
+        async function carregarNomes() {
+            try {
+                const res = await fetch(API_URL);
+                const nomes = await res.json();
+
+                listaConfirmados.innerHTML = '';
+                nomes.forEach(item => {
+                    const li = document.createElement('li');
+                    li.textContent = item.nome;
+                    listaConfirmados.appendChild(li);
+                });
+            } catch (error) {
+                console.error('Erro ao carregar nomes:', error);
+            }
+        }
+
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const nome = campoNome.value.trim();
+
+            if (!nome) return;
+
+            const confirm = await Swal.fire({
+                title: 'Confirmar nomes?',
+                html: `Você está adicionando:<br><strong>${nome.replace(/\n/g, '<br>')}</strong><br><br>Confirma sua presença?`,
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Sim, confirmar',
+                cancelButtonText: 'Cancelar'
+            });
+
+            if (confirm.isConfirmed) {
+                try {
+                    const res = await fetch(API_URL, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ nome })
+                    });
+
+                    const data = await res.json();
+
+                    if (data.success) {
+                        await Swal.fire({
+                            icon: 'success',
+                            title: 'Presença confirmada!',
+                            html: `Nome(s) registrado(s):<br><strong>${nome.replace(/\n/g, '<br>')}</strong>`
+                        });
+                        campoNome.value = '';
+                        carregarNomes();
+                    } else {
+                        Swal.fire({
+                            icon: 'info',
+                            title: 'Nome já confirmado',
+                            text: data.message || 'Esse nome já está na lista.'
+                        });
+                    }
+
+                } catch (err) {
+                    console.error('Erro ao confirmar presença:', err);
+                    Swal.fire('Erro', 'Não foi possível enviar sua confirmação. Tente novamente.', 'error');
+                }
+            }
         });
 
-        const result = await response.json();
-
-        if (result.success) {
-          Swal.fire({
-            icon: 'success',
-            title: 'Presença confirmada!',
-            html: `Nome registrado:<br><strong>${result.nome}</strong>`
-          });
-          document.getElementById('campo-nome').value = '';
-        } else {
-          Swal.fire({
-            icon: 'warning',
-            title: 'Já confirmado!',
-            text: result.message || 'Este nome já está na lista.'
-          });
-        }
-      }
-    });
-  </script>
+        carregarNomes();
+    </script>
 </body>
+
 </html>
