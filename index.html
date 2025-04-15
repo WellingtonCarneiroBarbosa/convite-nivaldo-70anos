@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Aniversário Nivaldo Barbosa: 70 ANOS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    /* Mesmos estilos do seu HTML anterior */
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+      padding: 30px 10px;
+      margin: 0;
+    }
+    h1 {
+      text-align: center;
+      font-size: 28px;
+    }
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+    input, button {
+      width: 100%;
+      padding: 15px;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    button {
+      background: #34a853;
+      color: white;
+      border: none;
+      border-radius: 10px;
+    }
+    .info-extra, .lista {
+      max-width: 500px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+    }
+    .info-extra.amarelo {
+      background: #fff3cd;
+      border-left: 5px solid #ffca2c;
+    }
+    ul { padding-left: 0; }
+    li { list-style: none; padding: 5px 0; border-bottom: 1px solid #eee; }
+  </style>
+</head>
+<body>
+  <h1>🎉 Aniversário NIVALDO BARBOSA NETO: 70 ANOS 🎉</h1>
+
+  <form id="formulario">
+    <input type="text" name="nome" id="campo-nome" placeholder="Digite todos os nomes da sua família" required>
+    <button type="submit">Confirmar Presença</button>
+    <p class="instrucao">Todos os nomes devem ser cadastrados corretamente para liberação na portaria da associação.</p>
+  </form>
+
+  <div class="info-extra">
+    🍽️ Cada família contribuir com <strong>2kg de carne</strong> e <strong>uma bebida</strong>. Desde já, agradecemos! 💚
+  </div>
+
+  <div class="info-extra amarelo">
+    📍 <strong>Local:</strong> Associação do O Boticário<br>
+    🕦 <strong>Horário:</strong> 17:00h — <strong>Data:</strong> 26/04/2025<br>
+    ⚠️ <strong>Confirme até:</strong> 23/04/2025
+  </div>
+
+  <script>
+    document.getElementById('formulario').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const nome = document.getElementById('campo-nome').value.trim();
+
+      if (nome === '') return;
+
+      const confirm = await Swal.fire({
+        title: 'Confirmar nomes?',
+        html: `Você está adicionando:<br><strong>${nome.replace(/\n/g, '<br>')}</strong><br><br>Confirma sua presença?`,
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Sim, confirmar',
+        cancelButtonText: 'Cancelar'
+      });
+
+      if (confirm.isConfirmed) {
+        const response = await fetch('https://apiconvite.avallacaoexcluslva.site/index.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ nome })
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Presença confirmada!',
+            html: `Nome registrado:<br><strong>${result.nome}</strong>`
+          });
+          document.getElementById('campo-nome').value = '';
+        } else {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Já confirmado!',
+            text: result.message || 'Este nome já está na lista.'
+          });
+        }
+      }
+    });
+  </script>
+</body>
+</html>
