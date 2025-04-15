@@ -228,10 +228,10 @@
                         await Swal.fire({
                             icon: 'success',
                             title: 'Presença confirmada!',
-                            html: `Nome(s) registrado(s):<br><strong>${data.adicionados}</strong><br><br>Lista atualizada:`
+                            html: `Nome(s) registrado(s):<br><strong>${data.adicionados}</strong>`
                         });
 
-                        // Atualiza a lista de nomes confirmados
+                        
                         listaConfirmados.innerHTML = '';
                         data.confirmados.forEach(item => {
                             const li = document.createElement('li');
